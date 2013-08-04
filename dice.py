@@ -9,7 +9,11 @@ SYS_SILVER_RECYLE=100
 PEOPLE=10
 TEST_TIMES=5000
 ALL_CHANCE=[1,1,1,1,50,18,14,12,8,6,6,6,6,8,12,14,18,50,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,8,8,8,8,8,8,150,24,24,24,24,24,24,1,1,1,1,1,1]
+MYCHANCE={401:150,402:150,403:150,404:150,405:150,406:150,301:24,601:8,602:8,603:8,604:8,605:8,606:8,701:5,801:5,901:5,1001:5,1201:5,1301:5,1401:5,1501:5,1601:5,
+          1701:5,1801:5,1901:5,2001:5,2101:5,2201:1,2301:1,2401:1,2501:1,2601:1,2701:1}
 SOME_DICT={(5,6):18,(4,6):19,(4,5):20,(5,6):21,(3,5):22,(3,4):23,(2,4):24,(2,5):25,(2,6):26,(2,3):27,(1,6):28,(1,5):29,(1,4):30,(1,3):31,(1,2):32,(6,6):33,(5,5):34,(4,4):35,(3,3):36,(2,2):37,(1,1):38}
+AND_DICT={(1,1):601,(2,2):602,(3,3):603,(4,4):604,(5,5):605,(6,6):606,(1,2):701,(1,3):801,(1,4):901,(1,5):1001,(1,6):1101,(2,3):1201,
+          (2,4):1301,(2,5):1401,(2,6):1501,(3,4):1601,(3,5):1701,(3,6):1801,(4,5):1901,(4,6):2001,(5,6):2101}
 #################################change#########################
 SYS_GOLDEN_GET=0
 SYS_SILVER_GET=0
@@ -101,6 +105,26 @@ class CountTest(object):
          for j in dice_list:
               result.append(52-j)
          return result
+
+    def get_b_result(self,dice_list):
+        #print dice_list
+        res=[]
+        d0=dice_list[0]
+        if d0==dice_list[1] and d0==dice_list[2]:
+            res.append(301)
+            res.append(400+d0)
+            res.append(600+d0)
+        else :
+            perm_list= Perm(dice_list)
+            for p in perm_list:
+                 i=AND_DICT.get(p,None)
+                 if  i and i not in res:
+                      res.append(i)
+        for j in dice_list:
+              res.append(2101+j*100)
+        return res
+
+            
     
     def calculate(self):
         global ALL_TIMES
@@ -201,20 +225,33 @@ class MyHTTPHandler(BaseHTTPServer.BaseHTTPRequestHandler):
         s.wfile.write("<p>You accessed path: %s</p>"%s.path)
 
 if __name__=='__main__':
-    for i in range(TEST_TIMES):
-        print "####################test%d start########################"%(i+1)
-        test=CountTest()
-        test.start()
-        print "####################test%d end##########################"%(i+1)
+    test=CountTest()
+    gen_list=[]
+    print test.get_b_result([3,3,3]) 
+    for i in range(1,7):
+        for j in range(1,7):
+            for k in range(1,7):
+                gen=[i,j,k]
+                gen.sort()
+                if gen not in gen_list:
+                    
+                    #print "%d%d%d=%s"%(gen[0],gen[1],gen[2],str(test.get_b_result(gen)))
+                     print "static const n%d%d%d=%s;"%(gen[0],gen[1],gen[2],str(test.get_b_result(gen)))
+                   # m_bet_result[111]=std::vector<int>(n111,sizeof(n111)/sizeof(int));
+                    #print "m_bet_result[%d%d%d]=std::vector<int>(n%d%d%d,n%d%d%d+sizeof(n%d%d%d)/sizeof(int)); "%(gen[0],gen[1],gen[2],
+                    #                                                                                          gen[0],gen[1],gen[2],
+                     #                                                                                              gen[0],gen[1],gen[2],
+                    #                                                                                          gen[0],gen[1],gen[2])
+                     gen_list.append(gen)
+    #for i in range(TEST_TIMES):
+    #    print "####################test%d start########################"%(i+1)
+    #    test=CountTest()
+     #   test.start()
+     #   print "####################test%d end##########################"%(i+1)
         #time.sleep(10)
-    print "golden get:%d,win:%d,win times chance:%s,count chance:%s"%(SYS_GOLDEN_GET,SYS_GOLDEN_WIN_TIMES,str(SYS_GOLDEN_WIN_TIMES/TEST_TIMES),str(SYS_GOLDEN_GET/ALL_GOLDEN))
-    print "silver get:%d,win:%d,win times chance:%s,count chance:%s"%(SYS_SILVER_GET,SYS_SILVER_WIN_TIMES,str(SYS_SILVER_WIN_TIMES/TEST_TIMES),str(SYS_SILVER_GET/ALL_SILVER) )
-    print "quan wei:%d"%len(QUAN_WEI)
-    print "all times:%d"%ALL_TIMES
+    #print "golden get:%d,win:%d,win times chance:%s,count chance:%s"%(SYS_GOLDEN_GET,SYS_GOLDEN_WIN_TIMES,str(SYS_GOLDEN_WIN_TIMES/TEST_TIMES),str(SYS_GOLDEN_GET/ALL_GOLDEN))
+    #print "silver get:%d,win:%d,win times chance:%s,count chance:%s"%(SYS_SILVER_GET,SYS_SILVER_WIN_TIMES,str(SYS_SILVER_WIN_TIMES/TEST_TIMES),str(SYS_SILVER_GET/ALL_SILVER) )
+    #print "quan wei:%d"%len(QUAN_WEI)
+    #print "all times:%d"%ALL_TIMES
     #print ALL_IN_DATA
     #print ALL_OUT_DATA
-
-
-                
-
-

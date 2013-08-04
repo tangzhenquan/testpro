@@ -1,0 +1,124 @@
+# depslib dependency file v1.0
+1375360758 source:c:\users\administrator\desktop\project\dice_c\dice\src\stratege.cpp
+	"../include/Stratege.h"
+	"algorithm"
+	"stdio.h"
+
+1375351074 c:\users\administrator\desktop\project\dice_c\dice\include\stratege.h
+	"Calculate.h"
+	<vector>
+
+1375351427 c:\users\administrator\desktop\project\dice_c\dice\include\calculate.h
+	<map>
+	<vector>
+
+1375359455 source:c:\users\administrator\desktop\project\dice_c\dice\main.cpp
+	<iostream>
+	"include/Calculate.h"
+	"stdio.h"
+	<vector>
+	<map>
+	"time.h"
+	"stdlib.h"
+	"algorithm"
+	"include/Stratege.h"
+
+1375359628 source:c:\users\administrator\desktop\project\dice_c\dice\src\calculate.cpp
+	"../include/Calculate.h"
+	"../include/Stratege.h"
+	"time.h"
+	"stdlib.h"
+	"stdio.h"
+	<cassert>
+
+1375375012 source:c:\users\tom\desktop\dice\main.cpp
+	<iostream>
+	"include/Calculate.h"
+	"stdio.h"
+	<vector>
+	<map>
+	"time.h"
+	"stdlib.h"
+	"algorithm"
+	"include/Stratege.h"
+
+1375372177 c:\users\tom\desktop\dice\include\calculate.h
+	<map>
+	<vector>
+
+1375375226 c:\users\tom\desktop\dice\include\stratege.h
+	"Calculate.h"
+	<vector>
+
+1375375414 source:c:\users\tom\desktop\dice\src\calculate.cpp
+	"../include/Calculate.h"
+	"../include/Stratege.h"
+	"time.h"
+	"stdlib.h"
+	"stdio.h"
+	<cassert>
+
+1375375168 source:c:\users\tom\desktop\dice\src\stratege.cpp
+	"../include/Stratege.h"
+	"algorithm"
+	"stdio.h"
+
+1375429856 source:c:\users\administrator\desktop\project\dice_82\dice\main.cpp
+	<iostream>
+	"include/Calculate.h"
+	"stdio.h"
+	<vector>
+	<map>
+	"time.h"
+	"stdlib.h"
+	"algorithm"
+	"include/Stratege.h"
+
+1375434140 c:\users\administrator\desktop\project\dice_82\dice\include\calculate.h
+	<map>
+	<vector>
+
+1375435327 c:\users\administrator\desktop\project\dice_82\dice\include\stratege.h
+	"Calculate.h"
+	<vector>
+
+1375434895 source:c:\users\administrator\desktop\project\dice_82\dice\src\calculate.cpp
+	"../include/Calculate.h"
+	"../include/Stratege.h"
+	"time.h"
+	"stdlib.h"
+	"stdio.h"
+	<cassert>
+
+1375425944 source:c:\users\administrator\desktop\project\dice_82\dice\src\stratege.cpp
+	"../include/Stratege.h"
+	"algorithm"
+	"stdio.h"
+
+1375429856 source:c:\users\tom\desktop\dice_83\dice\main.cpp
+	<iostream>
+	"include/Calculate.h"
+	"stdio.h"
+	<vector>
+	<map>
+	"time.h"
+	"stdlib.h"
+	"algorithm"
+	"include/Stratege.h"
+
+1375434140 c:\users\tom\desktop\dice_83\dice\include\calculate.h
+	<map>
+	<vector>
+
+1375435327 c:\users\tom\desktop\dice_83\dice\include\stratege.h
+	"Calculate.h"
+	<vector>
+
+1375434895 source:c:\users\tom\desktop\dice_83\dice\src\calculate.cpp
+	"../include/Calculate.h"
+	"../include/Stratege.h"
+	"time.h"
+	"stdlib.h"
+	"stdio.h"
+	<cassert>
+
