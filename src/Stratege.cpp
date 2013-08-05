@@ -2,11 +2,17 @@
 #include "algorithm"
 #include "stdio.h"
 
-
-bool Stratege::GetSingleResultBySel(std::vector<int>& goal_vector, const Calculate::CoinsAreaMap_t& bet_map, unsigned int& cur_sys_golden_out, unsigned int& cur_sys_silver_out)
+#define SYS_GOLDEN_MAX_LOSE  (100000)
+#define SYS_SILVER_MAX_LOSE  (100000)
+#define SYS_GOLDEN_RECYLE    (100)
+#define SYS_SILVER_RECYLE    (100)
+#define SYS_GOLDEN_PERCENT   0.05
+#define SYS_SILVER_PERCENT   0.05
+bool Stratege::GetSingleResultBySel(const std::vector<int>& goal_vector, const Calculate::CoinsAreaMap_t& bet_map, unsigned int& cur_sys_golden_out, unsigned int& cur_sys_silver_out)
 {
-    std::sort(goal_vector.begin(),goal_vector.begin()+3);
-    int goal=goal_vector.at(0)*100+goal_vector.at(1)*10+goal_vector.at(2);
+    std::vector<int> tem=goal_vector;
+    std::sort(tem.begin(),tem.begin()+3);
+    int goal=tem.at(0)*100+tem.at(1)*10+tem.at(2);
     std::vector<int> res;
     if(!(Helper::GetInstance()->GetResByGoal(goal,res)))
     {
@@ -122,25 +128,46 @@ std::vector<int> BalanceStrage::GetDiceResult(const Calculate::CoinsAreaMap_t& b
     int b[3]= {0};
     std::vector<int> goal_vector;
     int retry_time=5;
-    for(int i=0;i<retry_time;++i)
+
+    unsigned  sys_out_silver_count=0;
+    unsigned  sys_out_golden_count=0;
+    unsigned  sys_recyle_golden_count=0;
+    unsigned  sys_recyle_silver_count=0;
+    for(int i=0; i<retry_time; ++i)
     {
         Helper::GetInstance()->Gen(b);
         goal_vector.assign(b, b+3);
         printf("%d,%d,%d\n",b[0],b[1],b[2]);
-        unsigned  sys_out_silver_count=0;
-        unsigned  sys_out_golden_count=0;
+
         GetSingleResultBySel(goal_vector,bet_map,sys_out_golden_count,sys_out_silver_count);
         if(i==4)
         {
-            _GP_HELPER_->AddSysGoldenIn(sys_out_golden_count);
-            _GP_HELPER_->AddSysSilverIn(sys_out_silver_count);
+            break;
+        }
+        if((all_golden_count-sys_out_golden_count>0&& _GP_HELPER_->g_sys_gloab.sys_golden_get<0)||
+                (all_golden_count-sys_out_golden_count<0&& _GP_HELPER_->g_sys_gloab.sys_golden_get>0))//只有当系统和本次输赢相同
+        {
+             float chance=static_cast<float>(abs(_GP_HELPER_->g_sys_gloab.sys_golden_get))/SYS_GOLDEN_MAX_LOSE;
+
+
         }
 
 
 
 
 
+
     }
+    _GP_HELPER_->g_sys_gloab.sys_golden_in_count+=all_golden_count;
+    _GP_HELPER_->g_sys_gloab.sys_silver_in_count+=all_silver_count;
+    _GP_HELPER_->g_sys_gloab.sys_golden_out_count+=sys_out_golden_count;
+    _GP_HELPER_->g_sys_gloab.sys_silver_out_count+=sys_out_silver_count;
+    _GP_HELPER_->g_sys_gloab.sys_golden_get+=(all_golden_count-sys_out_golden_count-sys_recyle_golden_count);
+    _GP_HELPER_->g_sys_gloab.sys_golden_get+=(all_silver_count-sys_out_silver_count-sys_recyle_silver_count);
+    _GP_HELPER_->g_sys_gloab.sys_golden_recyle+=sys_recyle_golden_count;
+    _GP_HELPER_->g_sys_gloab.sys_silver_recyle+=sys_recyle_silver_count;
+
+    return goal_vector;
 
 }
 

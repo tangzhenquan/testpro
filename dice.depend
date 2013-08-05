@@ -122,3 +122,35 @@
 	"stdio.h"
 	<cassert>
 
+1375704654 source:g:\tangzhenquangit\testpro\main.cpp
+	<iostream>
+	"include/Calculate.h"
+	"stdio.h"
+	<vector>
+	<map>
+	"time.h"
+	"stdlib.h"
+	"algorithm"
+	"include/Stratege.h"
+
+1375704719 g:\tangzhenquangit\testpro\include\calculate.h
+	<map>
+	<vector>
+
+1375698669 g:\tangzhenquangit\testpro\include\stratege.h
+	"Calculate.h"
+	<vector>
+
+1375704271 source:g:\tangzhenquangit\testpro\src\calculate.cpp
+	"../include/Calculate.h"
+	"../include/Stratege.h"
+	"time.h"
+	"stdlib.h"
+	"stdio.h"
+	<cassert>
+
+1375704284 source:g:\tangzhenquangit\testpro\src\stratege.cpp
+	"../include/Stratege.h"
+	"algorithm"
+	"stdio.h"
+

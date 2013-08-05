@@ -28,6 +28,11 @@ int intRand(int a,int b)
     return (int)doubleRand(a,b);
 }
 
+bool RankPik(float b)
+{
+    float c=doubleRand(0,1);
+    return c<b;
+}
 
 int main()
 {
@@ -37,7 +42,12 @@ int main()
     //printf("%d\n",Helper::GetInstance()->GetNumResult()->at(111).at(2));
     srand(time(NULL));
     rand();
-
+    printf( "%lf\n",doubleRand(0,1));
+    for(int i=0;i<100;i++)
+    {
+        printf("%d\n",RankPik(0.1));
+    }
+    return 0;
     int o_times=1000;
     int sys_win_times=0;
     unsigned int all_times_sliver=0;

@@ -87,8 +87,7 @@ Helper* Helper::GetInstance()
 Helper::Helper()
     :m_bet_result(new NumResultMap_t)
     ,m_odds_map(new OddsMap_t)
-    ,m_sys_golden_in(0)
-    ,m_sys_silver_in(0)
+
 {
 
     srand(time(NULL));
@@ -232,7 +231,20 @@ int Helper::GetOddbyArea(int area)
 
 }
 
+bool Helper::RandomPick(float chance )
+{
+     float c=DoubleRand(0,1);
+     return c<chance;
+}
 
+double Helper::DoubleRand(double a, double b)
+{
+    double r;
+    unsigned int as=rand();
+    r=(double)as/RAND_MAX;
+    //printf("as;%u,r:%f\n",as,r);
+    return a+r*(b-a);
+}
 
 
 

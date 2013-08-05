@@ -9,7 +9,7 @@ public:
     Stratege() {}
     virtual ~Stratege() {}
     virtual std::vector<int> GetDiceResult(const Calculate::CoinsAreaMap_t& bet_map,unsigned int all_golden_count,unsigned int all_silver_count)=0;
-    virtual bool GetSingleResultBySel(std::vector<int>& goal_vector,const Calculate::CoinsAreaMap_t& bet_map,unsigned int& cur_sys_golden_out,unsigned int& cur_sys_silver_out);
+    virtual bool GetSingleResultBySel(const std::vector<int>& goal_vector,const Calculate::CoinsAreaMap_t& bet_map,unsigned int& cur_sys_golden_out,unsigned int& cur_sys_silver_out);
     virtual int GetSysWin()=0;
 };
 
