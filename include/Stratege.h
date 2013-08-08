@@ -10,7 +10,7 @@ public:
     virtual ~Stratege() {}
     virtual std::vector<int> GetDiceResult(const Calculate::CoinsAreaMap_t& bet_map,unsigned int all_golden_count,unsigned int all_silver_count)=0;
     virtual bool GetSingleResultBySel(const std::vector<int>& goal_vector,const Calculate::CoinsAreaMap_t& bet_map,unsigned int& cur_sys_golden_out,unsigned int& cur_sys_silver_out);
-    virtual int GetSysWin()=0;
+    virtual int GetSilverSysWin()=0;
 };
 
 
@@ -24,7 +24,7 @@ public:
     virtual std::vector<int> GetDiceResult(const Calculate::CoinsAreaMap_t& bet_map,unsigned int all_golden_count,unsigned int all_silver_count);
 
     virtual ~RandomStratege() {}
-    virtual int GetSysWin()
+    virtual int GetSilverSysWin()
     {
         return m_sys_win;
     }
@@ -40,7 +40,7 @@ public:
     explicit ReduceSilverStrage(int count=2);
     virtual ~ReduceSilverStrage() {}
     virtual std::vector<int> GetDiceResult(const Calculate::CoinsAreaMap_t& bet_map,unsigned int all_golden_count,unsigned int all_silver_count);
-    virtual int GetSysWin()
+    virtual int GetSilverSysWin()
     {
         return m_sys_win ;
     }
@@ -56,7 +56,7 @@ public:
     BalanceStrage();
     virtual ~BalanceStrage(){}
     virtual std::vector<int> GetDiceResult(const Calculate::CoinsAreaMap_t& bet_map,unsigned int all_golden_count,unsigned int all_silver_count);
-    virtual int GetSysWin()
+    virtual int GetSilverSysWin()
     {
         return m_sys_win ;
     }

@@ -17,8 +17,21 @@ struct SysGloab
     unsigned int sys_silver_in_count;//系统银币押注总额
     unsigned int sys_silver_out_count;//系统银币赔出总额
     int sys_silver_get ;//系统当前银币输赢状况
-    unsigned int sys_golden_recyle;
-    unsigned int sys_silver_recyle;
+    int sys_golden_recyle;
+    int sys_silver_recyle;
+    SysGloab()
+    :sys_golden_in_count(0),
+    sys_golden_out_count(0),
+    sys_golden_get(0),
+    sys_silver_in_count(0),
+    sys_silver_out_count(0),
+    sys_silver_get(0),
+    sys_golden_recyle(0),
+    sys_silver_recyle(0)
+
+    {
+
+    }
 
 };
 class Helper
@@ -73,7 +86,7 @@ public:
     void SetStratege(Stratege* stratege);
 
     std::vector<int> GetResult();
-    int GetSysWin();
+    int GetSilverSysWin();
     unsigned int GetAllSliverCount()
     {
         return m_all_sliver_count;
