@@ -9,8 +9,24 @@ public:
     Stratege() {}
     virtual ~Stratege() {}
     virtual std::vector<int> GetDiceResult(const Calculate::CoinsAreaMap_t& bet_map,unsigned int all_golden_count,unsigned int all_silver_count)=0;
-    virtual bool GetSingleResultBySel(const std::vector<int>& goal_vector,const Calculate::CoinsAreaMap_t& bet_map,unsigned int& cur_sys_golden_out,unsigned int& cur_sys_silver_out);
-    virtual int GetSilverSysWin()=0;
+    virtual std::vector<int> GetSilverSysWin()=0;
+     /** \brief
+     *根据押注情况和开骰结果计算系统需要返还金币和银币
+     * \param
+     * \param
+     * \return
+     *
+     */
+    static bool GetSingleResultBySel(const std::vector<int>& goal_vector,const Calculate::CoinsAreaMap_t& bet_map,unsigned int& cur_sys_golden_out,unsigned int& cur_sys_silver_out);
+     /** \brief
+     *根据押注情况和开骰区域计算系统需要返还金币和银币
+     * \param
+     * \param
+     * \return
+     *
+     */
+    static bool GetSingleResultByArea(const std::vector<int>& area_vector,const Calculate::CoinsAreaMap_t& bet_map,unsigned int& cur_sys_golden_out,unsigned int& cur_sys_silver_out);
+
 };
 
 
@@ -20,48 +36,36 @@ class RandomStratege
 {
 public:
 
-    RandomStratege():m_sys_win(0) {}
+    RandomStratege()
+    {
+        m_sys_win.assign(3,0);
+    }
     virtual std::vector<int> GetDiceResult(const Calculate::CoinsAreaMap_t& bet_map,unsigned int all_golden_count,unsigned int all_silver_count);
 
     virtual ~RandomStratege() {}
-    virtual int GetSilverSysWin()
+    virtual  std::vector<int> GetSilverSysWin()
     {
-        return m_sys_win;
+        return  m_sys_win;
     }
 private:
-    int m_sys_win;
+    std::vector<int> m_sys_win;
 
 };
 
-class ReduceSilverStrage
-    :public Stratege
-{
-public:
-    explicit ReduceSilverStrage(int count=2);
-    virtual ~ReduceSilverStrage() {}
-    virtual std::vector<int> GetDiceResult(const Calculate::CoinsAreaMap_t& bet_map,unsigned int all_golden_count,unsigned int all_silver_count);
-    virtual int GetSilverSysWin()
-    {
-        return m_sys_win ;
-    }
-private:
-    int m_count;
-    int m_sys_win;
-};
 
 class  BalanceStrage
     :public Stratege
 {
 public:
     BalanceStrage();
-    virtual ~BalanceStrage(){}
+    virtual ~BalanceStrage() {}
     virtual std::vector<int> GetDiceResult(const Calculate::CoinsAreaMap_t& bet_map,unsigned int all_golden_count,unsigned int all_silver_count);
-    virtual int GetSilverSysWin()
+    virtual std::vector<int> GetSilverSysWin()
     {
         return m_sys_win ;
     }
 private:
-    int m_sys_win;
+    std::vector<int> m_sys_win;;
 
 };
 

@@ -297,7 +297,7 @@ std::vector<int> Calculate::GetResult()
     }
     return m_stratege->GetDiceResult(m_coins_area_map,m_all_golden_count,m_all_sliver_count);
 }
-int Calculate::GetSilverSysWin()
+std::vector<int>  Calculate::GetSilverSysWin()
 {
     return m_stratege->GetSilverSysWin();
 }

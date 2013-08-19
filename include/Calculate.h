@@ -86,10 +86,14 @@ public:
     void SetStratege(Stratege* stratege);
 
     std::vector<int> GetResult();
-    int GetSilverSysWin();
+    std::vector<int>  GetSilverSysWin();
     unsigned int GetAllSliverCount()
     {
         return m_all_sliver_count;
+    }
+    unsigned int GetAllGoldenCount()
+    {
+        return m_all_golden_count;
     }
     void dump();
 
