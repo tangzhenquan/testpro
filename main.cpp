@@ -48,14 +48,15 @@ int main()
 //        printf("%d\n",RankPik(0.1));
 //    }
 //    return 0;
-    int o_times=10000;
+    int o_times=1000;
     int real_times=0;
+    Calculate test;
     for(int j=0; j<o_times; j++)
     {
 
         printf("\n");
         printf("####################start##########################\n");
-        Calculate test;
+
         int times=intRand(17,35);
         // printf("times:%d\n",times);
         std::vector<int > myvector(times);
@@ -68,9 +69,10 @@ int main()
         Stratege *s=new BalanceStrage;
         test.SetStratege(s);
         std::vector<int> res= test.GetResult();
-        std::vector<int> sys_win=test.GetSilverSysWin();
+        std::vector<int> sys_win=test.GetSysWin();
         real_times+=sys_win[2];
         printf("###################end###########################\n");
+        test.Clear();
 
         // printf("all_sliver_count:%u,syswin:%d res:%d%d%d\n",all_sliver_count,sys_win,res[0],res[1],res[2]);
     }

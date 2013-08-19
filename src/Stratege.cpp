@@ -6,8 +6,8 @@
 #define SYS_SILVER_MAX_LOSE  (1000000)
 #define SYS_GOLDEN_RECYLE    (100)
 #define SYS_SILVER_RECYLE    (100)
-#define SYS_GOLDEN_PERCENT   0.01
-#define SYS_SILVER_PERCENT   0.01
+#define SYS_GOLDEN_PERCENT   -0.05
+#define SYS_SILVER_PERCENT   -0.05
 bool Stratege::GetSingleResultBySel(const std::vector<int>& goal_vector, const Calculate::CoinsAreaMap_t& bet_map, unsigned int& cur_sys_golden_out, unsigned int& cur_sys_silver_out)
 {
     std::vector<int> tem=goal_vector;
@@ -78,10 +78,11 @@ BalanceStrage::BalanceStrage()
 std::vector<int> BalanceStrage::GetDiceResult(const Calculate::CoinsAreaMap_t& bet_map, unsigned int all_golden_count, unsigned int all_silver_count)
 {
 
+    m_sys_win.assign(3,0);
     int b[3]= {0};
     std::vector<int> goal_vector;
     int retry_time=5;
-
+    printf("1:%d,2:%d,3:%d\n",m_sys_win.at(0),m_sys_win.at(1),m_sys_win.at(2));
     unsigned int sys_out_silver_count=0;
     unsigned int sys_out_golden_count=0;
     int sys_recyle_golden_count=all_golden_count*SYS_GOLDEN_PERCENT;
@@ -101,21 +102,30 @@ std::vector<int> BalanceStrage::GetDiceResult(const Calculate::CoinsAreaMap_t& b
         }
         bool golden_reset=false;
         bool silver_reset=false;
-        if((all_golden_count-sys_out_golden_count>0&& _GP_HELPER_->g_sys_gloab.sys_golden_get>0)||
-                (all_golden_count-sys_out_golden_count<0&& _GP_HELPER_->g_sys_gloab.sys_golden_get<0))//只有当系统和本次输赢相同
+        if((all_golden_count-sys_out_golden_count>0)== (_GP_HELPER_->g_sys_gloab.sys_golden_get>0))
+        //   (all_golden_count-sys_out_golden_count<0&& _GP_HELPER_->g_sys_gloab.sys_golden_get<0))//只有当系统和本次输赢相同
         {
              float chance=static_cast<float>(abs(_GP_HELPER_->g_sys_gloab.sys_golden_get))/SYS_GOLDEN_MAX_LOSE;
              golden_reset=_GP_HELPER_->RandomPick(chance);
              printf("golden_chance:%f,golden_reset:%d\n",chance,golden_reset);
 
         }
+        printf("fuck:%d,%d,%d,%d,%d,%d\n",
+               all_golden_count-sys_out_golden_count>0,
+               all_silver_count-sys_out_silver_count>0,
+               _GP_HELPER_->g_sys_gloab.sys_golden_get,
+               _GP_HELPER_->g_sys_gloab.sys_silver_get,
+               (all_golden_count-sys_out_golden_count>0)== (_GP_HELPER_->g_sys_gloab.sys_golden_get>0),
+               (all_silver_count-sys_out_silver_count>0)== (_GP_HELPER_->g_sys_gloab.sys_silver_get>0)
+
+               );
         if(!golden_reset && i>=3)
         {
             printf("no change\n");
                  break;
         }
-        if((all_silver_count-sys_out_silver_count>0&& _GP_HELPER_->g_sys_gloab.sys_silver_get>0)||
-                (all_silver_count-sys_out_silver_count<0&& _GP_HELPER_->g_sys_gloab.sys_silver_get<0))//只有当系统和本次输赢相同
+        if((all_silver_count-sys_out_silver_count>0)== (_GP_HELPER_->g_sys_gloab.sys_silver_get>0))
+          // (all_silver_count-sys_out_silver_count<0&& _GP_HELPER_->g_sys_gloab.sys_silver_get<0))//只有当系统和本次输赢相同
         {
              float chance=static_cast<float>(abs(_GP_HELPER_->g_sys_gloab.sys_silver_get))/SYS_SILVER_MAX_LOSE;
              silver_reset=_GP_HELPER_->RandomPick(chance);

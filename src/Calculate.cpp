@@ -297,9 +297,9 @@ std::vector<int> Calculate::GetResult()
     }
     return m_stratege->GetDiceResult(m_coins_area_map,m_all_golden_count,m_all_sliver_count);
 }
-std::vector<int>  Calculate::GetSilverSysWin()
+std::vector<int>  Calculate::GetSysWin()
 {
-    return m_stratege->GetSilverSysWin();
+    return m_stratege->GetSysWin();
 }
 
 void Calculate::SetStratege(Stratege* stratege)
@@ -312,11 +312,19 @@ void Calculate::SetStratege(Stratege* stratege)
     m_stratege=stratege;
 
 }
-void Calculate::dump()
+void Calculate::Dump()
 {
     for(CoinsAreaMap_t::iterator it=m_coins_area_map.begin();
             it!=m_coins_area_map.end(); ++it)
     {
         printf("%u,%u,%u\n",it->first,it->second.golden_count,it->second.silver_count);
     }
+}
+void Calculate::Clear()
+{
+  m_all_golden_count =0;
+  m_all_sliver_count=0;
+  m_coins_area_map.clear();
+
+
 }

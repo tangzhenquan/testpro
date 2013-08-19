@@ -84,9 +84,10 @@ public:
 
     bool AddBet(unsigned int golden_coins,unsigned int silver_coins,unsigned int area);
     void SetStratege(Stratege* stratege);
-
+    void Dump();
+    void Clear();
     std::vector<int> GetResult();
-    std::vector<int>  GetSilverSysWin();
+    std::vector<int>  GetSysWin();
     unsigned int GetAllSliverCount()
     {
         return m_all_sliver_count;
@@ -95,7 +96,7 @@ public:
     {
         return m_all_golden_count;
     }
-    void dump();
+
 
 private:
 

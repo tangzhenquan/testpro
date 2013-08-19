@@ -9,7 +9,7 @@ public:
     Stratege() {}
     virtual ~Stratege() {}
     virtual std::vector<int> GetDiceResult(const Calculate::CoinsAreaMap_t& bet_map,unsigned int all_golden_count,unsigned int all_silver_count)=0;
-    virtual std::vector<int> GetSilverSysWin()=0;
+    virtual std::vector<int> GetSysWin()=0;
      /** \brief
      *根据押注情况和开骰结果计算系统需要返还金币和银币
      * \param
@@ -43,7 +43,7 @@ public:
     virtual std::vector<int> GetDiceResult(const Calculate::CoinsAreaMap_t& bet_map,unsigned int all_golden_count,unsigned int all_silver_count);
 
     virtual ~RandomStratege() {}
-    virtual  std::vector<int> GetSilverSysWin()
+    virtual  std::vector<int> GetSysWin()
     {
         return  m_sys_win;
     }
@@ -60,7 +60,7 @@ public:
     BalanceStrage();
     virtual ~BalanceStrage() {}
     virtual std::vector<int> GetDiceResult(const Calculate::CoinsAreaMap_t& bet_map,unsigned int all_golden_count,unsigned int all_silver_count);
-    virtual std::vector<int> GetSilverSysWin()
+    virtual std::vector<int> GetSysWin()
     {
         return m_sys_win ;
     }
