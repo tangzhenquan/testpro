@@ -27,6 +27,9 @@ public:
      */
     static bool GetSingleResultByArea(const std::vector<int>& area_vector,const Calculate::CoinsAreaMap_t& bet_map,unsigned int& cur_sys_golden_out,unsigned int& cur_sys_silver_out);
 
+
+    static bool GetNewSingleResultBySel(const std::vector<int>& goal_vector,const Calculate::CoinsAreaMap_t& bet_map,unsigned int& cur_sys_golden_out,unsigned int& cur_sys_silver_out);
+
 };
 
 

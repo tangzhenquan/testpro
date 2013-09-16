@@ -72,6 +72,25 @@ static const int odds[]= {180,30,10,5,1};
 
 
 
+static const int new_odds[]={16,8,4,2};
+static const int new_areas[]= {601,602,603,604,701,801,901,1001,1201,2201,2301,2401,2501};
+static const int n11[]={601,2201};
+static const int n12[]={701,2201,2301};
+static const int n13[]={801,2201,2401};
+static const int n14[]={901,2201,2501};
+static const int n22[]={602,2301};
+static const int n23[]={1001,2301,2401};
+static const int n24[]={1101,2301,2501};
+static const int n33[]={603,2401};
+static const int n34[]={1201,2401,2501};
+static const int n44[]={604,2501};
+static const int n21[]={701,2201,2301};;
+static const int n31[]={801,2201,2401};
+static const int n41[]={901,2201,2501};
+static const int n32[]={1001,2301,2401};
+static const int n42[]={1101,2301,2501};
+static const int n43[]={1201,2401,2501};
+
 
 Helper* Helper::m_instance=NULL;
 

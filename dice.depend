@@ -137,7 +137,7 @@
 	<map>
 	<vector>
 
-1376928732 g:\tangzhenquangit\testpro\include\stratege.h
+1379344880 g:\tangzhenquangit\testpro\include\stratege.h
 	"Calculate.h"
 	<vector>
 
@@ -149,7 +149,7 @@
 	"stdio.h"
 	<cassert>
 
-1376933806 source:g:\tangzhenquangit\testpro\src\stratege.cpp
+1377197712 source:g:\tangzhenquangit\testpro\src\stratege.cpp
 	"../include/Stratege.h"
 	"algorithm"
 	"stdio.h"

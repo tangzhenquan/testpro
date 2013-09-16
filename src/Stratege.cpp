@@ -55,6 +55,10 @@ bool Stratege::GetSingleResultByArea(const std::vector<int>& area_vector, const 
     }
     return true;
 }
+bool Stratege::GetNewSingleResultBySel(const std::vector<int>& goal_vector, const Calculate::CoinsAreaMap_t& bet_map, unsigned int& cur_sys_golden_out, unsigned int& cur_sys_silver_out)
+{
+
+}
 
 
 std::vector<int> RandomStratege::GetDiceResult(const Calculate::CoinsAreaMap_t& bet_map,unsigned int all_golden_count,unsigned int all_silver_count)
@@ -92,6 +96,8 @@ std::vector<int> BalanceStrage::GetDiceResult(const Calculate::CoinsAreaMap_t& b
         m_sys_win[2]++;
         printf("µÚ%d´Î\n",i+1);
         Helper::GetInstance()->Gen(b);
+         sys_out_silver_count=0;
+         sys_out_golden_count=0;
         goal_vector.assign(b, b+3);
         printf("%d,%d,%d\n",b[0],b[1],b[2]);
         GetSingleResultBySel(goal_vector,bet_map,sys_out_golden_count,sys_out_silver_count);
