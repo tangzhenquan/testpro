@@ -11,8 +11,13 @@ using namespace std;
 
 int RandomNumber ()
 {
-    return (::rand()%33);
+    return (::rand()%14);
 }
+int RandomNumber2 ()
+{
+    return (::rand()%9);
+}
+
 
 
 double doubleRand(double a,double b)
@@ -48,37 +53,39 @@ int main()
 //        printf("%d\n",RankPik(0.1));
 //    }
 //    return 0;
-    srand(time(NULL));
-    rand();
-    for(int d=0; d<100; d++)
-    {
-        int s[3]= {0};
-
-        _GP_HELPER_->Gen(s);
-        printf("%d,%d,%d\n",s[0],s[1],s[2]);
-    }
 
 
-    return 1;
-    int o_times=1000;
+    int o_times=500;
     int real_times=0;
     Calculate test;
+    srand(time(0));
+    rand();
     for(int j=0; j<o_times; j++)
     {
 
         printf("\n");
         printf("####################start##########################\n");
 
-        int times=intRand(17,35);
+        int times=intRand(30,50);
         // printf("times:%d\n",times);
         std::vector<int > myvector(times);
         generate (myvector.begin(), myvector.end(), RandomNumber);
         for(int i=0; i<times; i++)
         {
-            test.AddBet(intRand(50,1000),intRand(50,1000),areas[myvector.at(i)]);
+            test.AddBet(intRand(50,1000),intRand(50,1000),new_areas[myvector.at(i)]);
+            //printf("1:%d\n",new_areas[myvector.at(i)]);
         }
-        //test.dump();
-        Stratege *s=new BalanceStrage;
+        int times2=intRand(30,50);
+        // printf("times:%d\n",times);
+        std::vector<int > myvector2(times2);
+        generate (myvector2.begin(), myvector2.end(), RandomNumber2);
+        for(int i=0; i<times2; i++)
+        {
+            test.AddBet(intRand(50,1000),intRand(50,1000),super_areas[myvector2.at(i)]);
+           // printf("2:%d\n",super_areas[myvector2.at(i)]);
+        }
+        test.Dump();
+        Stratege *s=new NewStrage;
         test.SetStratege(s);
         std::vector<int> res= test.GetResult();
         std::vector<int> sys_win=test.GetSysWin();

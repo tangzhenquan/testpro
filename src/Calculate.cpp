@@ -73,7 +73,7 @@ static const int odds[]= {180,30,10,5,1};
 
 
 static const int new_odds[]={16,8,4,2};
-static const int new_areas[]= {601,602,603,604,701,801,901,1001,1201,2201,2301,2401,2501};
+extern const int new_areas[]= {601,602,603,604,701,801,901,1001,1101,1201,2201,2301,2401,2501};
 static const int n11[]={601,2201,2201};
 static const int n12[]={701,2201,2301};
 static const int n13[]={801,2201,2401};
@@ -91,7 +91,7 @@ static const int n32[]={1001,2301,2401};
 static const int n42[]={1101,2301,2501};
 static const int n43[]={1201,2401,2501};
 static const int super_odds[]={24,12,8,4};
-static const int super_areas[]= {101,102,103,104,105,106,107,108,109};
+extern const int super_areas[]= {101,102,103,104,105,106,107,108,109};
 
 
 Helper* Helper::m_instance=NULL;
@@ -274,7 +274,7 @@ Helper::~Helper()
 
 void Helper::Gen(int* out)
 {
-    printf("m_range_max:%d\n",m_range_max);
+   // printf("m_range_max:%d\n",m_range_max);
     int rand_num=DoubleRand(0,m_range_max);
     printf("xx:%d\n",rand_num);
     std::map<int,int>::const_iterator it=m_range_map.upper_bound(rand_num);
@@ -284,7 +284,6 @@ void Helper::Gen(int* out)
     }
     else
     {
-       printf("xxas\n");
        out[0]=9;
     }
     out[1]=rand()%4+1;
@@ -319,6 +318,10 @@ bool Helper::GetResByGoal(int goal, std::vector<int>& res)
 }
 int Helper::GetOddbyArea(int area)
 {
+    if(area==super_areas[0])
+    {
+        return GetMaxOdd();
+    }
     OddsMap_t::iterator it=m_odds_map->find(area);
     if(it!=m_odds_map->end())
     {

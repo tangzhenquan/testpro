@@ -4,6 +4,8 @@
 #include <vector>
 
 extern const int areas[];
+extern const int new_areas[];
+extern const int super_areas[];
 
 typedef std::map<int,std::vector<int> > NumResultMap_t;
 typedef std::map<int,int> OddsMap_t;
