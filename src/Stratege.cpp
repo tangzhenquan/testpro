@@ -57,7 +57,43 @@ bool Stratege::GetSingleResultByArea(const std::vector<int>& area_vector, const 
 }
 bool Stratege::GetNewSingleResultBySel(const std::vector<int>& goal_vector, const Calculate::CoinsAreaMap_t& bet_map, unsigned int& cur_sys_golden_out, unsigned int& cur_sys_silver_out)
 {
+    int goal=goal_vector.at(1)*10+goal_vector.at(2);
+    int left_goal=goal_vector.at(0);
+    std::vector<int> res;
+    if(!(Helper::GetInstance()->GetResByGoal(goal,res)))
+    {
+        return false;
+    }
+    int left_area=GetLeftResByGoal(left_goal);
+    res.push_back(left_area);
+    return GetNewSingleResultByArea(res,bet_map,cur_sys_golden_out,cur_sys_silver_out);
 
+}
+bool Stratege::GetNewSingleResultByArea(const std::vector<int>& area_vector, const Calculate::CoinsAreaMap_t& bet_map, unsigned int& cur_sys_golden_out, unsigned int& cur_sys_silver_out)
+{
+    for(std::vector<int>::const_iterator it=area_vector.begin();
+            it!=area_vector.end();
+            ++it)
+    {
+        int area=*it;
+        int odd=Helper::GetInstance()->GetOddbyArea(area);
+        if(odd==0)
+        {
+            continue;
+        }
+
+        Calculate::CoinsAreaMap_t::const_iterator c_it=bet_map.find(area);
+        if(c_it==bet_map.end())
+        {
+            continue;
+        }
+        int golden_count=c_it->second.golden_count ;
+        cur_sys_golden_out+=(odd*golden_count);
+        int sliver_count=c_it->second.silver_count ;
+        cur_sys_silver_out+=(odd*sliver_count);
+
+    }
+    return true;
 }
 
 
@@ -166,6 +202,33 @@ std::vector<int> BalanceStrage::GetDiceResult(const Calculate::CoinsAreaMap_t& b
 
     return goal_vector;
 
+}
+
+
+NewStrage::NewStrage()
+{
+     m_sys_win.assign(3,0);
+}
+
+std::vector<int> NewStrage::GetDiceResult(const Calculate::CoinsAreaMap_t& bet_map, unsigned int all_golden_count, unsigned int all_silver_count)
+{
+    m_sys_win.assign(3,0);
+    int b[3]= {0};
+    std::vector<int> goal_vector;
+    int retry_time=5;
+    unsigned int sys_out_silver_count=0;
+    unsigned int sys_out_golden_count=0;
+    int sys_recyle_golden_count=all_golden_count*SYS_GOLDEN_PERCENT;
+    int sys_recyle_silver_count=all_silver_count*SYS_SILVER_PERCENT;
+    for(int i=0; i<=retry_time; ++i)
+    {
+        printf("µÚ%d´Î\n",i+1);
+        Helper::GetInstance()->Gen(b);
+        goal_vector.assign(b, b+3);
+        printf("%d,%d,%d\n",b[0],b[1],b[2]);
+
+
+    }
 }
 
 

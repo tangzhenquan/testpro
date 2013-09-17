@@ -40,14 +40,17 @@ class Helper
 public:
     static Helper* GetInstance();
     void  Gen(int *out);
+    int GetMaxOdd();
     bool GetResByGoal(int goal, std::vector<int>& res);
     int  GetOddbyArea(int area);
+    int  GetLeftResByGoal(int area);
     NumResultMap_t* GetNumResult();
     bool RandomPick(float chance);
 
     double DoubleRand(double a, double b);
     OddsMap_t*  GetOdds();
     SysGloab g_sys_gloab;
+    void  SetRangeMaxPerCent(int percent);
 private:
     Helper();
     ~Helper();
@@ -58,6 +61,9 @@ private:
     static Helper* m_instance;
     NumResultMap_t *m_bet_result;
     OddsMap_t    *m_odds_map;
+    std::map<int,int> m_range_map;
+    float  m_range_percent;
+    int  m_range_max;
 
 
 };

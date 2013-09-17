@@ -122,7 +122,7 @@
 	"stdio.h"
 	<cassert>
 
-1376934090 source:g:\tangzhenquangit\testpro\main.cpp
+1379424388 source:g:\tangzhenquangit\testpro\main.cpp
 	<iostream>
 	"include/Calculate.h"
 	"stdio.h"
@@ -133,15 +133,15 @@
 	"algorithm"
 	"include/Stratege.h"
 
-1376929408 g:\tangzhenquangit\testpro\include\calculate.h
+1379424728 g:\tangzhenquangit\testpro\include\calculate.h
 	<map>
 	<vector>
 
-1379344880 g:\tangzhenquangit\testpro\include\stratege.h
+1379419125 g:\tangzhenquangit\testpro\include\stratege.h
 	"Calculate.h"
 	<vector>
 
-1376929614 source:g:\tangzhenquangit\testpro\src\calculate.cpp
+1379424744 source:g:\tangzhenquangit\testpro\src\calculate.cpp
 	"../include/Calculate.h"
 	"../include/Stratege.h"
 	"time.h"
@@ -149,7 +149,7 @@
 	"stdio.h"
 	<cassert>
 
-1377197712 source:g:\tangzhenquangit\testpro\src\stratege.cpp
+1379420652 source:g:\tangzhenquangit\testpro\src\stratege.cpp
 	"../include/Stratege.h"
 	"algorithm"
 	"stdio.h"

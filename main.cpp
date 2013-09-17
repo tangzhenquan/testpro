@@ -48,6 +48,18 @@ int main()
 //        printf("%d\n",RankPik(0.1));
 //    }
 //    return 0;
+    srand(time(NULL));
+    rand();
+    for(int d=0; d<100; d++)
+    {
+        int s[3]= {0};
+
+        _GP_HELPER_->Gen(s);
+        printf("%d,%d,%d\n",s[0],s[1],s[2]);
+    }
+
+
+    return 1;
     int o_times=1000;
     int real_times=0;
     Calculate test;
